@@ -7,9 +7,9 @@ function generate_table() {
  var hours = parseFloat(document.getElementById("hour_text_box").value);
  var num_of_rows = Math.ceil(hours/time_delta); 
 
- console.log(time_delta);
- console.log(hours);
- console.log(num_of_rows);
+ //console.log(time_delta);
+ //console.log(hours);
+ //console.log(num_of_rows);
 
  const weekdays = ["Hour", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
  // get the reference for the body
@@ -42,8 +42,13 @@ function generate_table() {
          }
       }
       	
-
+      var cell_id_string = String(i + ',' + j);
+      console.log(cell_id_string);
+      cell.id = cell_id_string;
       cell.appendChild(cellText);
+      cell.setAttribute("class", "a");
+      cell.setAttribute("onClick", "add_event(this)");
+  
       row.appendChild(cell);
     }
 
@@ -58,11 +63,23 @@ function generate_table() {
   // sets the border attribute of tbl to 2;
   tbl.setAttribute("border", "1");
   tbl.setAttribute("width", "50%");
+  
 }
 
 
+function merge_cells()
+{
+  document.getElementById("2,2").setAttribute("colspan", 2);
+  document.getElementById("2,3").remove();
+}
 
-
+function add_event(blah)
+{
+  //console.log(blah.id);
+  var block_length = 2;
+  var row_col_split = blah.id.split(",");
+  console.log(row_col_split);
+}
    
 
  
