@@ -41,7 +41,7 @@ function generate_table() {
       }
       	
       var cell_id_string = String(i + ',' + j);
-      console.log(cell_id_string);
+      //console.log(cell_id_string);
       cell.id = cell_id_string;
       cell.appendChild(cellText);
       cell.setAttribute("class", "a");
@@ -67,8 +67,17 @@ function generate_table() {
 
 function merge_cells()
 {
-  document.getElementById("2,2").setAttribute("class", "b");
-  document.getElementById("3,2").setAttribute("class", "b");
+  //document.getElementById("2,2").setAttribute("class", "b");
+  //document.getElementById("3,2").setAttribute("class", "b");
+
+var x = document.querySelectorAll(".selected");
+var i;
+for (i = 0; i < x.length; i++) {
+  x[i].setAttribute("class", "b"); 
+  console.log(x[i].id);
+} 
+
+
 }
 
 function select(blah)
