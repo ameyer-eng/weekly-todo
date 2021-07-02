@@ -1,6 +1,6 @@
 
- var time_delta = 0.5;       //parseFloat(document.getElementById("res_text_box").value);
- var hours =5;                //parseFloat(document.getElementById("hour_text_box").value);
+ var time_delta = parseFloat(document.getElementById("res_text_box").value);
+ var hours = parseFloat(document.getElementById("hour_text_box").value);
  var num_of_rows = Math.ceil(hours/time_delta); 
  var groups = [];
 
@@ -8,10 +8,8 @@
  var class_index = 0;
  var table_task = ["b", "c", "d"];
 
- //groups[1] = ["1,2","3,4"];
 
-
-
+ 
 function generate_table() {
  var current_hour = 0;
  
