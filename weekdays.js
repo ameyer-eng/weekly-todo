@@ -2,6 +2,13 @@
  var time_delta = 0.5;       //parseFloat(document.getElementById("res_text_box").value);
  var hours =5;                //parseFloat(document.getElementById("hour_text_box").value);
  var num_of_rows = Math.ceil(hours/time_delta); 
+ var groups = [];
+
+ var task_title = "Swimming!s"
+
+ //groups[1] = ["1,2","3,4"];
+
+
 
 function generate_table() {
  var current_hour = 0;
@@ -63,24 +70,16 @@ function generate_table() {
   tbl.setAttribute("border", "3");
   tbl.setAttribute("width", "50%");
   
+
+
 }
 
 
 function merge_cells()
 {
-  //document.getElementById("2,2").setAttribute("class", "b");
-  //document.getElementById("3,2").setAttribute("class", "b");
-
-// var x = document.querySelectorAll(".selected");
-// var i;
-// for (i = 0; i < x.length; i++) {
-//   x[i].setAttribute("class", "b"); 
-//   console.log(x[i].id);
-// } 
-
 var namestring = "";
 var ingroup = false;
-var group = 1;
+var group_num = 1;
 
 for(var j = 0; j < 8; j++)
 {
@@ -95,25 +94,35 @@ for(var j = 0; j < 8; j++)
     }
     else if(document.getElementById(namestring).className == "selected" && ingroup == true)
     {
-      console.log(namestring +" is in group " + group);
+      console.log(namestring +" is in group " + group_num);
+      
       //Add element to group list
+      groups[group_num].push(namestring);
     }
     else if(document.getElementById(namestring).className == "selected" && ingroup == false)
     {
       console.log(namestring + " START OF A NEW GROUP");
-      group++;
-      ingroup = true;
-    }
-  
       
+      // Create new group for elements to go into
+      group_num++;
+      groups[group_num] =[];
+      //add current element id to new group
+      groups[group_num].push(namestring);
+
+      ingroup = true;
+
+    }
     
-    //document.getElementById("namestring").setAttribute("class", "b");
+    if(document.getElementById(namestring).className == "selected")
+    {
+      document.getElementById(namestring).setAttribute("class", "b");
+    }
+    
 
   }
 
 }
-
-
+console.log(groups); 
 }
 
 function select(blah)
@@ -128,3 +137,5 @@ function un_selected(blah)
   document.getElementById(blah.id).setAttribute("onClick", "select(this)");
 }
  
+
+
