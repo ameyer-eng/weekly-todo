@@ -1,11 +1,12 @@
 
+ var time_delta = 0.5;       //parseFloat(document.getElementById("res_text_box").value);
+ var hours =5;                //parseFloat(document.getElementById("hour_text_box").value);
+ var num_of_rows = Math.ceil(hours/time_delta); 
 
 function generate_table() {
  var current_hour = 0;
  
- var time_delta = parseFloat(document.getElementById("res_text_box").value);
- var hours = parseFloat(document.getElementById("hour_text_box").value);
- var num_of_rows = Math.ceil(hours/time_delta); 
+
  const weekdays = ["Hour", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 
@@ -40,7 +41,7 @@ function generate_table() {
          }
       }
       	
-      var cell_id_string = String(i + ',' + j);
+      var cell_id_string = String(j + ',' + i);
       //console.log(cell_id_string);
       cell.id = cell_id_string;
       cell.appendChild(cellText);
@@ -70,12 +71,47 @@ function merge_cells()
   //document.getElementById("2,2").setAttribute("class", "b");
   //document.getElementById("3,2").setAttribute("class", "b");
 
-var x = document.querySelectorAll(".selected");
-var i;
-for (i = 0; i < x.length; i++) {
-  x[i].setAttribute("class", "b"); 
-  console.log(x[i].id);
-} 
+// var x = document.querySelectorAll(".selected");
+// var i;
+// for (i = 0; i < x.length; i++) {
+//   x[i].setAttribute("class", "b"); 
+//   console.log(x[i].id);
+// } 
+
+var namestring = "";
+var ingroup = false;
+var group = 1;
+
+for(var j = 0; j < 8; j++)
+{
+  for (var i = 0; i < num_of_rows; i++)
+  {
+    namestring = String(j + ',' + i);
+    
+    if(document.getElementById(namestring).className !== "selected" && ingroup == true)
+    {
+      ingroup = false;
+      console.log("group end");
+    }
+    else if(document.getElementById(namestring).className == "selected" && ingroup == true)
+    {
+      console.log(namestring +" is in group " + group);
+      //Add element to group list
+    }
+    else if(document.getElementById(namestring).className == "selected" && ingroup == false)
+    {
+      console.log(namestring + " START OF A NEW GROUP");
+      group++;
+      ingroup = true;
+    }
+  
+      
+    
+    //document.getElementById("namestring").setAttribute("class", "b");
+
+  }
+
+}
 
 
 }
