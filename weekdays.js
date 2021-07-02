@@ -5,6 +5,8 @@
  var groups = [];
 
  var task_title = "Swimming!"
+ var class_index = 0;
+ var table_task = ["b", "c", "d"];
 
  //groups[1] = ["1,2","3,4"];
 
@@ -80,6 +82,7 @@ function merge_cells()
 var namestring = "";
 var ingroup = false;
 var group_num = 1;
+task_title = document.getElementById("task").value
 
 for(var j = 0; j < 8; j++)
 {
@@ -118,12 +121,18 @@ for(var j = 0; j < 8; j++)
     
     if(document.getElementById(namestring).className == "selected")
     {
-      document.getElementById(namestring).setAttribute("class", "b");
+            document.getElementById(namestring).setAttribute("class", table_task[class_index]);
     }
     
 
   }
-
+  
+}
+if(class_index < 2){
+  class_index++;
+}
+else{
+  class_index = 0;
 }
 console.log(groups); 
 }
