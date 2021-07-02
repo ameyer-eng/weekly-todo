@@ -4,7 +4,7 @@
  var num_of_rows = Math.ceil(hours/time_delta); 
  var groups = [];
 
- var task_title = "Swimming!s"
+ var task_title = "Swimming!"
 
  //groups[1] = ["1,2","3,4"];
 
@@ -102,6 +102,9 @@ for(var j = 0; j < 8; j++)
     else if(document.getElementById(namestring).className == "selected" && ingroup == false)
     {
       console.log(namestring + " START OF A NEW GROUP");
+
+      //Add the task title to start of time block:
+      document.getElementById(namestring).innerText = task_title;
       
       // Create new group for elements to go into
       group_num++;
